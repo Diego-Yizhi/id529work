@@ -1,0 +1,67 @@
+---
+title: "Day2 Basic programming in R"
+author: "Diego"
+format: 
+  pdf:
+    toc: true
+    number-sections: true
+    colorlinks: true
+editor: visual
+---
+
+\newpage
+
+```{r, include=TRUE}
+
+```
+
+# Loops
+
+```{r,collapse=TRUE, warning=FALSE, error=FALSE, message=FALSE}
+animals <- c("a","b","c","d","e")
+
+for (animal in animals) {
+  print(paste0(animal," is rude"))
+}
+```
+
+## Read multiple data sets using loops
+
+```{r,collapse=TRUE, warning=FALSE, error=FALSE, message=FALSE}
+# state_data <- list()
+# 
+# for (state in state.name) { # state.name is predefined
+#   new_data <- read.csv(file = paste0(state, ".csv"))
+#   state_date[[state]] <- new_data
+# }
+```
+
+```{r,collapse=TRUE, warning=FALSE, error=FALSE, message=FALSE}
+set.seed(123)
+n_iterations <- 0
+value <- 0
+while (value<100){
+  n_iterations <- n_iterations+1
+  value <- value + sample.int(n=10,size=1)
+}
+print(n_iterations);print(value)
+
+
+iterations_needed <- numeric()
+
+for (i in 1:10000){
+  n_iterations <- 0
+  value <- 0
+  while (value<100){
+    n_iterations <- n_iterations+1
+    value <- value+sample.int(n=10,size=1)
+  }
+  iterations_needed[i] <- n_iterations
+}
+
+summary(iterations_needed)
+```
+
+```{r}
+
+```
