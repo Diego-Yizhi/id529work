@@ -12,7 +12,7 @@ editor: visual
 \newpage
 
 ```{r, include=TRUE}
-
+pacman::p_load(tidyverse, gapminder)
 ```
 
 # Loops
@@ -63,5 +63,15 @@ summary(iterations_needed)
 ```
 
 ```{r}
+gapminder %>% 
+  ggplot(aes(x=continent))+
+  geom_bar()
+```
 
+```{r}
+gapminder %>% 
+  ggplot(aes(x=year,y=lifeExp, color=country))+
+  geom_line()+
+  theme(legend.position = "none")
+ggsave("line_plot.pdf")
 ```
