@@ -1,0 +1,74 @@
+---
+title: "Day3 dplyr, text and function writing"
+author: "Diego"
+format: 
+  pdf:
+    toc: true
+    number-sections: true
+    colorlinks: true
+editor: visual
+---
+
+\newpage
+
+```{r, include=TRUE}
+pacman::p_load(tidyverse, here,renv, ID529data)
+```
+
+# Scripts management
+
+## `renv` package
+
+```{r,collapse=TRUE, warning=FALSE, error=FALSE, message=FALSE}
+renv::snapshot() # to save the packages used, and use it again to update
+
+# renv::init() # to initialize a new package lockfile
+
+# the collaborators want to load up the package versions as the ones you've locked
+renv::restore() 
+```
+
+## `targets` package
+
+This can be helpful to arrange the workflows of different R scripts, ordering them into the right flow.
+
+# `dplyr` package
+
+![functions in dplyr](https://raw.githubusercontent.com/Diego-Yizhi/images/main/20230111142620.png){fig-align="center"}
+
+```{r,collapse=TRUE, warning=FALSE, error=FALSE, message=FALSE}
+data <- nhanes_id529
+data %>% glimpse()
+# gtsummary::all_continuous()
+data %>% as_tibble()
+```
+
+```{r,collapse=TRUE, warning=FALSE, error=FALSE, message=FALSE}
+data <- nhanes_id529 %>% 
+  as_tibble() %>% 
+  rename_with(~ tolower(.)) %>% 
+  rename(race_eth = race_ethnicity,
+         mean_sbp = mean_bp,
+         pov_ratio = poverty_ratio) %>% 
+  select(id:race_eth, mean_sbp:height, pov_ratio,
+         matches("pf.*")) %>% # look for variables beginning with "pf"
+  relocate(pfas_total, .after = last_col())
+
+data <- data %>% 
+  mutate(htn_cat = factor(
+    case_when(
+    mean_sbp < 120 ~ "normal",
+    mean_sbp %in% c(120,129) ~ "elevated",
+    mean_sbp %in% c(130,139) ~ "stage1",
+    mean_sbp >= 140 ~ "stage2",
+    TRUE ~ NA_character_
+  )
+  ))
+data %>% glimpse()
+```
+
+# `text manipulation`
+
+```{r,collapse=TRUE, warning=FALSE, error=FALSE, message=FALSE}
+
+```
