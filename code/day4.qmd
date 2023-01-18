@@ -1,0 +1,26 @@
+---
+title: "Day4 API, time and Model"
+author: "Diego"
+format: 
+  pdf:
+    toc: true
+    number-sections: true
+    colorlinks: true
+editor: visual
+---
+
+\newpage
+
+```{r, include=TRUE}
+pacman::p_load(tidyverse, here, tidycensus)
+```
+
+# APIs
+
+## `tidycensus` packages
+
+It allows users to interface with a select number of the US census Bureau's data APIs and return data frames, optionally with simple feature geometry included.
+
+```{r,collapse=TRUE, warning=FALSE, error=FALSE, message=FALSE}
+
+```

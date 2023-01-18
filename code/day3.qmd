@@ -67,8 +67,18 @@ data <- data %>%
 data %>% glimpse()
 ```
 
-# `text manipulation`
+# `Function`
 
 ```{r,collapse=TRUE, warning=FALSE, error=FALSE, message=FALSE}
+# Title
+# Description
+# Reference
+# Arguments
+# Returns
 
+cal_hypotenuse_length <- function(x,y){
+  sqrt(x^2+y^2)
+}
+
+cal_hypotenuse_length(3,4)
 ```
